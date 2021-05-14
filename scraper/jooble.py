@@ -1,5 +1,5 @@
 import datetime
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 import requests
 import functools
 import operator
@@ -25,8 +25,9 @@ class JoobleScraper(Scraper):
             job_title_parent_tag = a_tag.find('span', class_='a7df9')
 
             job_title = ''
-            for child in job_title_parent_tag:
-                job_title += child.text
+            for child in job_title_parent_tag.children:
+                if not isinstance(child, NavigableString):
+                    job_title += child.text
 
             company_tag = card.find('p', class_='_786d5') or ''
             if company_tag:
