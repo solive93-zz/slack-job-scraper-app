@@ -1,0 +1,12 @@
+# IDE settings
+.idea/
+
+# environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# tests
+tests/
